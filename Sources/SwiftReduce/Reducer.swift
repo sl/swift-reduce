@@ -4,16 +4,16 @@
 /// Unfortunately, we can't leverage value semantics due to limitations
 /// with the way reflection on value semantic types works. Hopefully
 /// that will change in the future.
-public protocol Model : ReduceHierarchyNode, KeyPathListable {
+public protocol Reducer : ReduceHierarchyNode, KeyPathListable {
   associatedtype RespondsTo : Action = NeverDispatched
   
-  /// Updates the `Model` with the change associated with the given
-  /// `Action` that the `Model` responds to.
+  /// Updates the `Reducer` with the change associated with the given
+  /// `Action` that the `Reducer` responds to.
   ///
   /// Has a default implementation that does nothing.
   mutating func reduce(action: RespondsTo)
   
-  /// Reduces the `Model` with the given `Action`. This allows the model to
+  /// Reduces the `Reducer` with the given `Action`. This allows the model to
   /// respond to any `Action` which reaches its depth in the reducer hierarchy.
   ///
   /// Has a default implementation which calls reduce if the action passed
@@ -21,14 +21,14 @@ public protocol Model : ReduceHierarchyNode, KeyPathListable {
   /// by users but may be used in few advanced use cases.
   mutating func attemptReduceWithAny(action: Action)
   
-  /// Recursively call all reducers in all children of the `Model`.
+  /// Recursively call all reducers in all children of the `Reducer`.
   ///
   /// Has a default implementation which does this via reflection.
   /// This should almost always be called from within `globallyReduce(with:)`.
   mutating func reduceChildren(with action: Action)
 }
 
-extension Model {
+extension Reducer {
   public mutating func reduceChildren(with action: Action) {
     for path in self.allKeyPaths {
       guard var reducerChild = self[keyPath: path] as? ReduceHierarchyNode else { continue }

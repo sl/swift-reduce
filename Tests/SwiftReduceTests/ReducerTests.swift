@@ -6,7 +6,7 @@ private enum XAction : Action {
   case decrement
 }
 
-private final class X : Model {
+private final class X : Reducer {
   var num: Int = 5
   var y: Y = Y()
   
@@ -23,7 +23,7 @@ private enum YAction : Action {
   case decrement
 }
 
-private final class Y : Model {
+private final class Y : Reducer {
   var num: Int = 10
   
   func reduce(action: YAction) {
@@ -34,7 +34,7 @@ private final class Y : Model {
   }
 }
 
-final class ModelTests: XCTestCase {
+final class ReducerTests: XCTestCase {
   func testBasicReduction() {
     var model = X()
     model._reduceSubtree(with: XAction.increment)
