@@ -6,6 +6,8 @@ weak var rootStoreRef: _AnyRootStore? = nil
 public class _AnyRootStore : BindableObject {
   public var didChange = PassthroughSubject<Void, Never>()
   
+  fileprivate init() {}
+  
   internal func reduce(with action: Action) {
     fatalError("implemented by subclass")
   }
@@ -15,7 +17,7 @@ public class _AnyRootStore : BindableObject {
 public final class Store<Model : ReduceHierarchyNode> : _AnyRootStore {
   var model: Model
   
-  public init(model: Model) {
+  fileprivate init(model: Model) {
     self.model = model
     super.init()
     rootStoreRef = self
@@ -28,5 +30,11 @@ public final class Store<Model : ReduceHierarchyNode> : _AnyRootStore {
   
   public subscript<U>(dynamicMember keyPath: KeyPath<Model, U>) -> U {
     return self.model[keyPath: keyPath]
+  }
+}
+
+extension ReduceHierarchyNode {
+  public func createStore() -> Store<Self> {
+    return Store(model: self)
   }
 }
