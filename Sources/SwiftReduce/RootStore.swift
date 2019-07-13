@@ -1,10 +1,10 @@
 import SwiftUI
 import Combine
 
-weak var rootStoreRef: AnyRootStore? = nil
+weak var rootStoreRef: _AnyRootStore? = nil
 
-class AnyRootStore : BindableObject {
-  var didChange = PassthroughSubject<Void, Never>()
+public class _AnyRootStore : BindableObject {
+  public var didChange = PassthroughSubject<Void, Never>()
   
   internal func reduce(with action: Action) {
     fatalError("implemented by subclass")
@@ -12,10 +12,10 @@ class AnyRootStore : BindableObject {
 }
 
 @dynamicMemberLookup
-final class Store<Model : ReduceHierarchyNode> : AnyRootStore {
+public final class Store<Model : ReduceHierarchyNode> : _AnyRootStore {
   var model: Model
   
-  init(model: Model) {
+  public init(model: Model) {
     self.model = model
     super.init()
     rootStoreRef = self
@@ -26,7 +26,7 @@ final class Store<Model : ReduceHierarchyNode> : AnyRootStore {
     didChange.send(())
   }
   
-  subscript<U>(dynamicMember keyPath: KeyPath<Model, U>) -> U {
+  public subscript<U>(dynamicMember keyPath: KeyPath<Model, U>) -> U {
     return self.model[keyPath: keyPath]
   }
 }
