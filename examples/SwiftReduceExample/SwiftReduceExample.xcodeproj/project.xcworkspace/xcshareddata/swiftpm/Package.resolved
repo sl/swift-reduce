@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SwiftReduce",
+        "repositoryURL": "https://github.com/sl/swift-reduce",
+        "state": {
+          "branch": "master",
+          "revision": "ccf2305de66d52467f735beec5e1461bc956d769",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
