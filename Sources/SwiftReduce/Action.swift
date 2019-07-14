@@ -33,6 +33,6 @@ extension Action {
   public func sideEffect() {}
 }
 
-public struct NeverDispatched : Action {
-  private init() {}
+public struct NeverReduced : Action {
+  internal init() {}
 }

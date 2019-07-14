@@ -5,7 +5,7 @@
 /// with the way reflection on value semantic types works. Hopefully
 /// that will change in the future.
 public protocol Reducer : ReduceHierarchyNode, KeyPathListable {
-  associatedtype RespondsTo : Action = NeverDispatched
+  associatedtype RespondsTo : Action = NeverReduced
   
   /// Updates the `Reducer` with the change associated with the given
   /// `Action` that the `Reducer` responds to.

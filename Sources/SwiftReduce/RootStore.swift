@@ -31,6 +31,23 @@ public final class Store<Model : ReduceHierarchyNode> : _AnyRootStore {
   public subscript<U>(dynamicMember keyPath: KeyPath<Model, U>) -> U {
     return self.model[keyPath: keyPath]
   }
+  
+  public subscript<U>(
+    _ keyPath: KeyPath<Model, U>,
+    _ getAction: @escaping (U) -> Action
+  ) -> Binding<U> {
+    return Binding(
+      getValue: { return self.model[keyPath: keyPath] },
+      setValue: { value in getAction(value).action() }
+    )
+  }
+  
+  public subscript<U>(_ keyPath: KeyPath<Model, U>) -> Binding<U> {
+    return Binding(
+      getValue: { return self.model[keyPath: keyPath] },
+      setValue: { value in }
+    )
+  }
 }
 
 extension ReduceHierarchyNode {
