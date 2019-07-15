@@ -160,5 +160,9 @@ struct MovieView : View {
 
 As you can see, a few conveniences have been added to make working with SwiftReduce actions easier! The main ones used here are:
 
-- Most places where closures are taken by SwiftUI, you can instead pass a SwiftReduce `Action` and everything will work fine!
+- Most places where closures are taken by SwiftUI, you can instead pass a SwiftReduce `Action` and everything will (eventually) work fine! Currently, only a few such locations have been implemented, but more are being added as the framework develops.
 - you can get a `Binding` from your `Store` which publishes SwiftReduce `Action` by subscripting it with a keypath to the value in your store, and giving it a closure which determines which `Action` to publish on changes.
+
+##### Disclaimer
+
+Swift reduce is in no way associated with Apple, the Swift project, or the actual SwiftUI.
