@@ -16,7 +16,7 @@ A reducer is a pure function which takes your store, or a piece of your store, a
 
 ### Actions
 
-Actions are data types which represent a change that your reducers can respond to. A single reducer can respond to any type which conforms to the `Action` protocol. When actions are dispatched (by invoking the action function on them) the framework will start with your root store, and check if it has a reducer which responds to the invoked action. If it does, it will invoke the reducer. Then, it will recursively search all of the fields of that class for other reducers. If it finds one, it will invoke that reducer.
+Actions are data types which represent a change that your reducers can respond to. A single reducer can respond to any type which conforms to the `Action` protocol. When actions are dispatched (by invoking the action function on them) the framework will start with your root store, and check if it has a reducer which responds to the invoked action. If it does, it will apply the action. Then, it will recursively search all of the fields of that class for other child reducers (marked with `@Child`). If it finds one, it will apply the action on the child.
 
 ### A Simple Model using SwiftReduce
 
@@ -28,9 +28,9 @@ enum NameChange : Action {
 
 final class Person : Reducer {
   var name: String = ""
-  var favoriteMovies = FavoriteMovies()
+  @Child var favoriteMovies = FavoriteMovies()
   
-  func reduce(action: NameChange) {
+  func apply(action: NameChange) {
     switch action {
     case .clear: self.name = ""
     case let .setName(name): self.name = name
@@ -46,7 +46,7 @@ enum UpdateMovies : Action {
 final class FavoriteMovies : Reducer {
   var movies: [String : Int] = [:]
   
-  func reduce(action: UpdateMovies) {
+  func apply(action: UpdateMovies) {
     switch action {
     case let .sawMovie(name):
       movies[name] = movies[name, default: 0] + 1
@@ -71,9 +71,9 @@ enum NameChange : Action {
 
 final class Person : Reducer {
   var name: String = ""
-  var favoriteMovies = FavoriteMovies()
+  @Child var favoriteMovies = FavoriteMovies()
   
-  func reduce(action: NameChange) {
+  func apply(action: NameChange) {
     switch action {
     case .clear: self.name = ""
     case let .setName(name): self.name = name
@@ -91,7 +91,7 @@ final class FavoriteMovies : Reducer {
   var input: String = ""
   var movies: [String : Int] = [:]
   
-  func reduce(action: UpdateMovies) {
+  func apply(action: UpdateMovies) {
     switch action {
     case let .setInput(name):
       input = name

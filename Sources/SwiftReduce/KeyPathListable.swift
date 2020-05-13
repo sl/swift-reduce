@@ -18,4 +18,8 @@ extension KeyPathListable {
     }
     return keyPaths
   }
+  
+  public var fieldNames: [String] {
+    Mirror(reflecting: self).children.compactMap { $0.label }
+  }
 }

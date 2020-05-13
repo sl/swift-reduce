@@ -6,11 +6,11 @@ enum NameChange : Action {
   case setName(String)
 }
 
-final class Person : Reducer {
+struct Person : Reducer {
   var name: String = ""
-  var favoriteMovies = FavoriteMovies()
+  @Child var favoriteMovies = FavoriteMovies()
   
-  func reduce(action: NameChange) {
+  mutating func apply(action: NameChange) {
     switch action {
     case .clear: self.name = ""
     case let .setName(name): self.name = name
@@ -23,10 +23,10 @@ enum UpdateMovies : Action {
   case removeMovie(String)
 }
 
-final class FavoriteMovies : Reducer {
+struct FavoriteMovies : Reducer {
   var movies: [String : Int] = [:]
   
-  func reduce(action: UpdateMovies) {
+  mutating func apply(action: UpdateMovies) {
     switch action {
     case let .sawMovie(name):
       movies[name] = movies[name, default: 0] + 1

@@ -6,11 +6,11 @@ private enum XAction : Action {
   case decrement
 }
 
-private final class X : Reducer {
+private struct X : Reducer {
   var num: Int = 5
-  var y: Y = Y()
+  @Child var y: Y = Y()
   
-  func reduce(action: XAction) {
+  mutating func apply(action: XAction) {
     switch action {
     case .increment: num += 1
     case .decrement: num -= 1
@@ -23,10 +23,10 @@ private enum YAction : Action {
   case decrement
 }
 
-private final class Y : Reducer {
+private struct Y : Reducer {
   var num: Int = 10
   
-  func reduce(action: YAction) {
+  mutating func apply(action: YAction) {
     switch action {
     case .increment: num += 1
     case .decrement: num -= 1

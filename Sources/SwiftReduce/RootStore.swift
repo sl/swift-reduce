@@ -3,8 +3,7 @@ import Combine
 
 weak var rootStoreRef: _AnyRootStore? = nil
 
-public class _AnyRootStore : BindableObject {
-  public var didChange = PassthroughSubject<Void, Never>()
+public class _AnyRootStore : ObservableObject {
   
   fileprivate init() {}
   
@@ -25,7 +24,6 @@ public final class Store<Model : ReduceHierarchyNode> : _AnyRootStore {
   
   override internal func reduce(with action: Action) {
     model._reduceSubtree(with: action)
-    didChange.send(())
   }
   
   public subscript<U>(dynamicMember keyPath: KeyPath<Model, U>) -> U {
@@ -37,15 +35,25 @@ public final class Store<Model : ReduceHierarchyNode> : _AnyRootStore {
     _ getAction: @escaping (U) -> Action
   ) -> Binding<U> {
     return Binding(
-      getValue: { return self.model[keyPath: keyPath] },
-      setValue: { value in getAction(value).action() }
+      get: { return self.model[keyPath: keyPath] },
+      set: { value in getAction(value).action() }
+    )
+  }
+  
+  public subscript<Bindable>(
+    _ keyPath: KeyPath<Model, Bindable.Payload>,
+    _ getAction: Bindable
+  ) -> Binding<Bindable.Payload> where Bindable : BindableAction {
+    return Binding(
+      get: { return self.model[keyPath: keyPath] },
+      set: { value in Bindable.constructWith(payload: value).action() }
     )
   }
   
   public subscript<U>(_ keyPath: KeyPath<Model, U>) -> Binding<U> {
     return Binding(
-      getValue: { return self.model[keyPath: keyPath] },
-      setValue: { value in }
+      get: { return self.model[keyPath: keyPath] },
+      set: { value in }
     )
   }
 }
