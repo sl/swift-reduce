@@ -24,11 +24,11 @@ public protocol Reducer {
   /// Recursively call all reducers in all children of the `Reducer`.
   ///
   /// Has a default implementation which does this via reflection.
-  mutating func _applyToChildren(action: Action)
+  mutating func _reduceSubtreeWith(action: Action)
 }
 
 extension Reducer {
-  public mutating func _applyToChildren(action: Action) {
+  public mutating func _reduceSubtreeWith(action: Action) {
     let fieldNames = Mirror(reflecting: self).children.compactMap { $0.label }
     for fieldName in fieldNames {
       // Use the Swift runtime to mutate the field with the given name
@@ -39,7 +39,7 @@ extension Reducer {
       guard var reducerChild = try! property.get(from: self)
         as? _ChildReducerProtocol else { continue }
       
-      reducerChild._applyAny(action: action)
+      reducerChild.reduceChildWith(action: action)
       try! property.set(value: reducerChild, on: &self)
     }
   }
@@ -49,8 +49,8 @@ extension Reducer {
     apply(action: respondableAction)
   }
   
-  public mutating func _reduceSubtree(with action: Action) {
+  public mutating func _reduceWith(action: Action) {
     _applyAny(action: action)
-    _applyToChildren(action: action)
+    _reduceSubtreeWith(action: action)
   }
 }

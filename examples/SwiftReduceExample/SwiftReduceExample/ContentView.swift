@@ -9,8 +9,8 @@
 import SwiftUI
 import SwiftReduce
 
-struct ContentView : View {
-    @EnvironmentObject var store: Store<Person>
+/*struct ContentView : View {
+    @Store var store: Person
     
     var body: some View {
         VStack {
@@ -26,7 +26,7 @@ struct ContentView : View {
 }
 
 struct MoviesView : View {
-    @EnvironmentObject var store: Store<Person>
+    @Store var store: Person
     
     var body: some View {
         VStack {
@@ -52,6 +52,12 @@ struct MovieView : View {
             Text("views: \(count)")
         }
         .tapAction(UpdateMovies.removeMovie(title))
+    }
+}*/
+
+struct ContentView : View {
+    var body: some View {
+        Text("hello world")
     }
 }
 

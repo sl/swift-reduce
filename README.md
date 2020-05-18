@@ -4,19 +4,15 @@ SwiftReduce is a Redux-like state management system built for SwiftUI!
 
 SwiftReduce is currently extremely experimental, expect lots of changes in the very short term.
 
-### Notes
-
-Currently, much to my shagrin, models in SwiftReduce cannot be represented as structs. This is due to the limitations of the reflection API when manipulating value types. Hopefully, this will change in the future either with some clever Swift hackery (I've tried a lot of things, but maybe something I hadn't thought of will be brought up) or due to a future language feature.
-
 ### Getting Started
 
-SwiftReduce has a couple of concepts that you need to be familiar with. The most important of theses are the Store, and the Reducer. In SwiftReduce, all your data is a part of one large data structure called the Store. You'll create one of these as a SwiftUI `EnvironmentObject` at the root view of your application.
+SwiftReduce has a couple of concepts that you need to be familiar with. The most important of theses are the Store, and the Reducer. In SwiftReduce, all your data is a part of one large data structure called the Store. You'll create one of these at the root of your application.
 
-A reducer is a pure function which takes your store, or a piece of your store, and updates it with the given action. In SwiftReduce, we represent reducers as methods on your model types.
+A reducer is a pure function which takes your store, or a piece of your store, and updates it with the given action. In SwiftReduce, we represent reducers as mutating methods on your model types.
 
 ### Actions
 
-Actions are data types which represent a change that your reducers can respond to. A single reducer can respond to any type which conforms to the `Action` protocol. When actions are dispatched (by invoking the action function on them) the framework will start with your root store, and check if it has a reducer which responds to the invoked action. If it does, it will apply the action. Then, it will recursively search all of the fields of that class for other child reducers (marked with `@Child`). If it finds one, it will apply the action on the child.
+Actions are data types which represent a change that your reducers can respond to. A single reducer can respond to any type which conforms to the `Action` protocol. When actions are dispatched (by invoking the perform function on them) the framework will start with your root store, and check if it has a reducer which responds to the invoked action. If it does, it will apply the action. Then, it will recursively search all of the fields of that struct for fields marked with `@Child`. If it finds one, it will apply the action on the child reducer.
 
 ### A Simple Model using SwiftReduce
 
@@ -26,8 +22,9 @@ enum NameChange : Action {
   case setName(String)
 }
 
-final class Person : Reducer {
+struct Person : Reducer {
   var name: String = ""
+  
   @Child var favoriteMovies = FavoriteMovies()
   
   func apply(action: NameChange) {
@@ -69,8 +66,9 @@ enum NameChange : Action {
   case setName(String)
 }
 
-final class Person : Reducer {
+struct Person : Reducer {
   var name: String = ""
+  
   @Child var favoriteMovies = FavoriteMovies()
   
   func apply(action: NameChange) {
@@ -87,7 +85,7 @@ enum UpdateMovies : Action {
   case removeMovie(String)
 }
 
-final class FavoriteMovies : Reducer {
+struct FavoriteMovies : Reducer {
   var input: String = ""
   var movies: [String : Int] = [:]
   

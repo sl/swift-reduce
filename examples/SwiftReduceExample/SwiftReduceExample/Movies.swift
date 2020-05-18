@@ -15,7 +15,7 @@ enum NameChange : Action {
 
 struct Person : Reducer {
     var name: String = ""
-    var favoriteMovies = FavoriteMovies()
+    @Child var favoriteMovies = FavoriteMovies()
     
     mutating func apply(action: NameChange) {
         switch action {

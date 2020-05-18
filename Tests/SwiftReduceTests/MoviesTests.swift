@@ -39,17 +39,17 @@ struct FavoriteMovies : Reducer {
 final class MoviesTests: XCTestCase {
   func testBasicReduction() {
     var model = Person()
-    model._reduceSubtree(with: NameChange.setName("Hello"))
+    model._reduceWith(action: NameChange.setName("Hello"))
     XCTAssertEqual(model.name, "Hello")
-    model._reduceSubtree(with: NameChange.clear)
+    model._reduceWith(action: NameChange.clear)
     XCTAssertEqual(model.name, "")
   }
   
   func testRecursiveReduction() {
     var model = Person()
-    model._reduceSubtree(with: UpdateMovies.sawMovie("Jaws"))
+    model._reduceWith(action: UpdateMovies.sawMovie("Jaws"))
     XCTAssertEqual(model.favoriteMovies.movies["Jaws"], 1)
-    model._reduceSubtree(with: UpdateMovies.sawMovie("Jaws"))
+    model._reduceWith(action: UpdateMovies.sawMovie("Jaws"))
     XCTAssertEqual(model.favoriteMovies.movies["Jaws"], 2)
   }
 

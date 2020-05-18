@@ -37,17 +37,17 @@ private struct Y : Reducer {
 final class ReducerTests: XCTestCase {
   func testBasicReduction() {
     var model = X()
-    model._reduceSubtree(with: XAction.increment)
+    model._reduceWith(action: XAction.increment)
     XCTAssertEqual(model.num, 6, "Basic increment action not correctly applied")
     XCTAssertEqual(model.y.num, 10, "Subtree modified by non-recursive action application")
-    model._reduceSubtree(with: XAction.decrement)
+    model._reduceWith(action: XAction.decrement)
     XCTAssertEqual(model.num, 5, "Sequenced decrement action not correct apllied")
     XCTAssertEqual(model.y.num, 10, "Subtree modified by non-recursive action application")
   }
   
   func testRecursiveReduction() {
     var model = X()
-    model._reduceSubtree(with: YAction.increment)
+    model._reduceWith(action: YAction.increment)
     XCTAssertEqual(model.y.num, 11, "Recursive increment action not correctly applied")
   }
 

@@ -13,8 +13,8 @@
 		7327C7EB22D9770A00F44BBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7327C7EA22D9770A00F44BBE /* Assets.xcassets */; };
 		7327C7EE22D9770A00F44BBE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7327C7ED22D9770A00F44BBE /* Preview Assets.xcassets */; };
 		7327C7F122D9770A00F44BBE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7327C7EF22D9770A00F44BBE /* LaunchScreen.storyboard */; };
-		733F224A22DA23AA00D2146B /* SwiftReduce in Frameworks */ = {isa = PBXBuildFile; productRef = 733F224922DA23AA00D2146B /* SwiftReduce */; };
 		735E436C22DA233F00204DB4 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 735E436B22DA233F00204DB4 /* Movies.swift */; };
+		73FC6A7724732C2200763353 /* SwiftReduce in Frameworks */ = {isa = PBXBuildFile; productRef = 73FC6A7624732C2200763353 /* SwiftReduce */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				733F224A22DA23AA00D2146B /* SwiftReduce in Frameworks */,
+				73FC6A7724732C2200763353 /* SwiftReduce in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,6 +47,7 @@
 			children = (
 				7327C7E322D9770800F44BBE /* SwiftReduceExample */,
 				7327C7E222D9770800F44BBE /* Products */,
+				73FC3ED3247328E900C575B4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,6 +83,13 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		73FC3ED3247328E900C575B4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -99,7 +107,7 @@
 			);
 			name = SwiftReduceExample;
 			packageProductDependencies = (
-				733F224922DA23AA00D2146B /* SwiftReduce */,
+				73FC6A7624732C2200763353 /* SwiftReduce */,
 			);
 			productName = SwiftReduceExample;
 			productReference = 7327C7E122D9770800F44BBE /* SwiftReduceExample.app */;
@@ -111,6 +119,9 @@
 		7327C7D922D9770800F44BBE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1100;
 				ORGANIZATIONNAME = "Sam Lazarus";
@@ -130,7 +141,7 @@
 			);
 			mainGroup = 7327C7D822D9770800F44BBE;
 			packageReferences = (
-				733F224822DA23AA00D2146B /* XCRemoteSwiftPackageReference "swift-reduce" */,
+				73FC6A7524732C2200763353 /* XCRemoteSwiftPackageReference "swift-reduce" */,
 			);
 			productRefGroup = 7327C7E222D9770800F44BBE /* Products */;
 			projectDirPath = "";
@@ -362,9 +373,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		733F224822DA23AA00D2146B /* XCRemoteSwiftPackageReference "swift-reduce" */ = {
+		73FC6A7524732C2200763353 /* XCRemoteSwiftPackageReference "swift-reduce" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sl/swift-reduce";
+			repositoryURL = "git@github.com:sl/swift-reduce.git";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -373,9 +384,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		733F224922DA23AA00D2146B /* SwiftReduce */ = {
+		73FC6A7624732C2200763353 /* SwiftReduce */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 733F224822DA23AA00D2146B /* XCRemoteSwiftPackageReference "swift-reduce" */;
+			package = 73FC6A7524732C2200763353 /* XCRemoteSwiftPackageReference "swift-reduce" */;
 			productName = SwiftReduce;
 		};
 /* End XCSwiftPackageProductDependency section */

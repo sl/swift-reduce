@@ -12,8 +12,8 @@ public struct Child<Value : Reducer> : _ChildReducerProtocol {
     set { value = newValue }
   }
   
-  mutating func _applyAny(action: Action) {
-    value._reduceSubtree(with: action)
+  mutating func reduceChildWith(action: Action) {
+    value._reduceWith(action: action)
   }
 }
 
@@ -21,5 +21,5 @@ public struct Child<Value : Reducer> : _ChildReducerProtocol {
 /// Child's contained reducer.
 protocol _ChildReducerProtocol {
   /// Apply the given `Action` to the ChildReducer's wrapped Reducer.
-  mutating func _applyAny(action: Action)
+  mutating func reduceChildWith(action: Action)
 }
