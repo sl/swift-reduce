@@ -2,17 +2,17 @@ import SwiftUI
 
 @propertyWrapper
 public struct Store<StoreType : Reducer> {
-  private weak var storeRef: RootStore<StoreType>?
+  private weak var storeRef: _AnyRootStore?
   
   public init() {
-    guard let typedStore = rootStoreRef as? RootStore<StoreType>? else {
+    guard let _ = rootStoreRef as? RootStore<StoreType>? else {
       print(rootStoreRef)
       fatalError("""
       The root store did not have a model of type \
       \(String(describing: StoreType.self))
       """)
     }
-    self.storeRef = typedStore
+    self.storeRef = rootStoreRef
   }
   
   public init(
@@ -22,8 +22,11 @@ public struct Store<StoreType : Reducer> {
   }
   
   public var wrappedValue: StoreType {
-    guard let store = storeRef else {
+    guard let ref = storeRef else {
       fatalError("A root store must be created before a store can be read from.")
+    }
+    guard let store = ref as? RootStore<StoreType> else {
+      fatalError("The store must have the same store type as the root store")
     }
    return store.model
   }
