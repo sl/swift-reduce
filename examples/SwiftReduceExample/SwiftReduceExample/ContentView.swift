@@ -59,8 +59,9 @@ struct ContentView : View {
     @Store var store: Person
     
     var body: some View {
-        let x = $store
-        return Text("hello")
+        VStack {
+            TextField("Movie Name", text: $store[\.name, { NameChange.setName($0) }])
+        }
     }
 }
 
