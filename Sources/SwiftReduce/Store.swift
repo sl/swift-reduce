@@ -12,6 +12,7 @@ public struct Store<StoreType : Reducer> {
       \(String(describing: StoreType.self))
       """)
     }
+    print("successfully linked root store")
     self.storeRef = rootStoreRef
   }
   
