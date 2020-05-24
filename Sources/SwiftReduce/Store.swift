@@ -27,6 +27,8 @@ public struct Store<StoreType : Reducer> {
    return store.model
   }
   
+  public var projectedValue: Self { self }
+  
   /// A `Binding` that reads from the `Store` and selects an `Action` to
   /// dispatch on set.
   public subscript<U>(

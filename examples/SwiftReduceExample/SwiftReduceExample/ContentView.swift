@@ -56,8 +56,11 @@ struct MovieView : View {
 }*/
 
 struct ContentView : View {
+    @Store var store: Person
+    
     var body: some View {
-        Text("hello world")
+        let x = $store
+        return Text("hello")
     }
 }
 
