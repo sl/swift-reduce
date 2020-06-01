@@ -1,8 +1,8 @@
 import SwiftUI
 
 @propertyWrapper
-public struct Store<StoreType : Reducer> {
-  private var storeRef: RootStore<StoreType>
+public struct Store<StoreType : Reducer> : DynamicProperty {
+  @ObservedObject private var storeRef: RootStore<StoreType>
   
   public init() {
     guard let rootStore = rootStoreRef else {
