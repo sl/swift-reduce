@@ -5,14 +5,6 @@ public struct Store<StoreType : Reducer> {
   private weak var storeRef: _AnyRootStore?
   
   public init() {
-    guard let _ = rootStoreRef as? RootStore<StoreType>? else {
-      print(rootStoreRef)
-      fatalError("""
-      The root store did not have a model of type \
-      \(String(describing: StoreType.self))
-      """)
-    }
-    print("successfully linked root store")
     self.storeRef = rootStoreRef
   }
   

@@ -1,7 +1,7 @@
 import SwiftUI
 import Combine
 
-weak var rootStoreRef: _AnyRootStore? = nil
+var rootStoreRef: _AnyRootStore? = nil
 
 public func usingRootStore<Model : Reducer>(_ rootStore: RootStore<Model>) {
   rootStoreRef = rootStore
