@@ -2,7 +2,7 @@ import SwiftUI
 
 @propertyWrapper
 public struct Store<StoreType : Reducer> {
-  private weak var storeRef: _AnyRootStore?
+  private var storeRef: _AnyRootStore
   
   public init() {
     self.storeRef = rootStoreRef
