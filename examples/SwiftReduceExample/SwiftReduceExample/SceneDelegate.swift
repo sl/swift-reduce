@@ -26,9 +26,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             print("adding root store")
-            usingRootStore(Person().createStore())
-            window.rootViewController = UIHostingController(rootView: ContentView()
-                .environmentObject(Person().createStore()))
+            usingRootStore(Person(name: "Sam").createStore())
+            window.rootViewController = UIHostingController(rootView: ContentView())
             self.window = window
             window.makeKeyAndVisible()
         }

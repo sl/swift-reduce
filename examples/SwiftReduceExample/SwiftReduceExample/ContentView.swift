@@ -9,15 +9,15 @@
 import SwiftUI
 import SwiftReduce
 
-/*struct ContentView : View {
+struct ContentView : View {
     @Store var store: Person
     
     var body: some View {
         VStack {
             Text(store.name)
             HStack {
-                TextField("Enter Name", text: store[\.name, { NameChange.setName($0) }])
-                Button("Clear", action: NameChange.clear)
+                TextField("Enter Name", text: $store[\.name, { NameChange.setName($0) }])
+                Button("Clear", action: NameChange.clear.perform)
             }
             MoviesView()
         }
@@ -31,11 +31,11 @@ struct MoviesView : View {
     var body: some View {
         VStack {
             HStack {
-                TextField("Movie Name", text: store[\.favoriteMovies.input, { UpdateMovies.setInput($0) }])
-                Button("watch", action: UpdateMovies.submit)
+                TextField("Movie Name", text: $store[\.favoriteMovies.input, { UpdateMovies.setInput($0) }])
+                Button("watch", action: UpdateMovies.submit.perform)
             }
-            List(Array(store.favoriteMovies.movies.keys).identified(by: \.self)) {
-                MovieView(title: $0, count: self.store.favoriteMovies.movies[$0]!)
+            List(Array(store.favoriteMovies.movies.keys), id: \.self) { title in
+                MovieView(title: title, count: self.store.favoriteMovies.movies[title]!)
             }
         }
     }
@@ -51,19 +51,23 @@ struct MovieView : View {
             Spacer()
             Text("views: \(count)")
         }
-        .tapAction(UpdateMovies.removeMovie(title))
+        .onTapGesture {
+            UpdateMovies.removeMovie(self.title).perform()
+        }
     }
-}*/
+}
 
-struct ContentView : View {
+/*struct ContentView : View {
     @Store var store: Person
     
     var body: some View {
         VStack {
-            TextField("Movie Name", text: $store[\.name, { NameChange.setName($0) }])
+            TextField("Person:", text: $store[\.name, { NameChange.setName($0) }])
+            Text("Should match: \(store.name)")
         }
+        .padding()
     }
-}
+}*/
 
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {

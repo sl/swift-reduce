@@ -3,4 +3,70 @@
    uuid = "8A4FE910-F4DD-4F59-A4DD-55ED6F3A7461"
    type = "1"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "608ADEFF-1C50-4114-97D6-C9C1CC363E67"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../Library/Developer/Xcode/DerivedData/SwiftReduceExample-darejumnvuqtwzdhyeiammsnjksk/SourcePackages/checkouts/swift-reduce/Sources/SwiftReduce/Store.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "8"
+            endingLineNumber = "8"
+            landmarkName = "init()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FBA90BE3-7C2E-4E71-8A82-64DE4261D133"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../Library/Developer/Xcode/DerivedData/SwiftReduceExample-darejumnvuqtwzdhyeiammsnjksk/SourcePackages/checkouts/swift-reduce/Sources/SwiftReduce/Store.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "init()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BEB8B32B-8523-48FB-AA1E-2B28C0CD9079"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../Library/Developer/Xcode/DerivedData/SwiftReduceExample-darejumnvuqtwzdhyeiammsnjksk/SourcePackages/checkouts/swift-reduce/Sources/SwiftReduce/Store.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "init()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B5A10FE7-2BB4-48FB-80A5-5CDB0C80E4AB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "../../../../../Library/Developer/Xcode/DerivedData/SwiftReduceExample-darejumnvuqtwzdhyeiammsnjksk/SourcePackages/checkouts/swift-reduce/Sources/SwiftReduce/Store.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "Store"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

@@ -17,6 +17,10 @@ struct Person : Reducer {
     var name: String = ""
     @Child var favoriteMovies = FavoriteMovies()
     
+    init(name: String) {
+        self.name = name
+    }
+    
     mutating func apply(action: NameChange) {
         switch action {
         case .clear: self.name = ""
@@ -31,7 +35,7 @@ enum UpdateMovies : Action {
     case removeMovie(String)
 }
 
-struct FavoriteMovies : Reducer {
+struct FavoriteMovies : Reducer, Hashable {
     var input: String = ""
     var movies: [String : Int] = [:]
     
