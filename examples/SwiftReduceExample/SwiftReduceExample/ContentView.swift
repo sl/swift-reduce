@@ -57,18 +57,6 @@ struct MovieView : View {
     }
 }
 
-/*struct ContentView : View {
-    @Store var store: Person
-    
-    var body: some View {
-        VStack {
-            TextField("Person:", text: $store[\.name, { NameChange.setName($0) }])
-            Text("Should match: \(store.name)")
-        }
-        .padding()
-    }
-}*/
-
 #if DEBUG
 struct ContentView_Previews : PreviewProvider {
     static var previews: some View {
