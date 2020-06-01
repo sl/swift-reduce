@@ -2,10 +2,19 @@ import SwiftUI
 
 @propertyWrapper
 public struct Store<StoreType : Reducer> {
-  private var storeRef: _AnyRootStore
+  private var storeRef: RootStore<StoreType>
   
   public init() {
-    self.storeRef = rootStoreRef
+    guard let rootStore = rootStoreRef else {
+      fatalError("A root store must be created before a store can be read from.")
+    }
+    guard let typedStore = rootStore as? RootStore<StoreType> else {
+      fatalError("""
+      Mismatched StoreType. Expected a store of type \
+      \(String(describing: StoreType.self)) but the root store's type did not match.
+      """)
+    }
+    self.storeRef = typedStore
   }
   
   public init(
@@ -15,13 +24,7 @@ public struct Store<StoreType : Reducer> {
   }
   
   public var wrappedValue: StoreType {
-    guard let ref = storeRef else {
-      fatalError("A root store must be created before a store can be read from.")
-    }
-    guard let store = ref as? RootStore<StoreType> else {
-      fatalError("The store must have the same store type as the root store")
-    }
-   return store.model
+   return storeRef.model
   }
   
   public var projectedValue: Self { self }
